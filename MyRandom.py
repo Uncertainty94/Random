@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import math
+import unicodedata
 
 M=5
 maxLen=10000
@@ -34,5 +35,9 @@ def drawHist(arr):
 
 R0=0.12341512312451
 randArr = getNewArr(R0)
+awg = (sum(randArr))/len(randArr)
+
+print(awg)
 drawHist(randArr)
+
 
