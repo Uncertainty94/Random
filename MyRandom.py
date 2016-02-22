@@ -13,7 +13,6 @@ def randomNew(previous):
 def getNewArr(num):
     result=[]
     while num not in result and len(result) < maxLen:
-
         result.append(num)
         num = randomNew(num)
     return result
@@ -29,7 +28,7 @@ def makeArrToDraw(fullArr):
 def drawHist(arr):
     osx=makeArrToDraw(arr)
     osy=[0, 250, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250]
-    width = 200
+    width = 250
     plt.bar(osy, osx, width)
     plt.show()
 
