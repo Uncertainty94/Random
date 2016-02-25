@@ -1,43 +1,75 @@
 import matplotlib.pyplot as plt
 import math
-import unicodedata
 
-M=5
-maxLen=10000
+M = 5
+maxLen = 10000
+K = 10.0
+
 
 def frac(num):
     return math.modf(num)[0]
 
-def randomNew(previous):
+
+def random_new(previous):
     return frac(previous*M)
 
-def getNewArr(num):
-    result=[]
+
+def get_new_arr(num):
+    result = []
     while num not in result and len(result) < maxLen:
         result.append(num)
-        num = randomNew(num)
+        num = random_new(num)
     return result
 
-def makeArrToDraw(fullArr):
-    result = [0,0,0,0,0,0,0,0,0,0]
-    for num in fullArr:
-        i =math.trunc(num*10)
-        result[i]+=1
-    print(result)
+
+def make_arr_to_draw_digital_dem(full_arr):
+    result = []
+    for num in full_arr:
+        i = math.trunc(num*10)
+        result.append(i)
+    # print(result)
     return result
 
-def drawHist(arr):
-    osx=makeArrToDraw(arr)
-    osy=[0, 250, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250]
-    width = 250
-    plt.bar(osy, osx, width)
+
+def dig_dem(arr):
+    osx = make_arr_to_draw_digital_dem(arr)
+    plt.hist(osx)
     plt.show()
 
+
+def count_m(arr):
+    return sum(arr) / len(arr)
+
+
+def count_disp(arr):
+    m = count_m(arr)
+    sum_quad = 0
+    for i in range (0, len(arr)):
+        sum_quad += (arr[i] - m)**2
+    return sum_quad / len(arr)
+
+
+def draw_hist(fullArr):
+    min_of_arr = min(fullArr)
+    max_of_arr = max(fullArr)
+    interval = (max_of_arr-min_of_arr)/K
+    print min_of_arr
+    print max_of_arr
+    print interval
+    result = []
+    for num in fullArr:
+        print num
+        for i in range(1, 11):
+            if (num >= (min_of_arr+interval*(i-1))) and (num <= (min_of_arr+interval*(i))):
+                result.append(i-1)
+                print i-1
+    plt.hist(result)
+    plt.show()
+
+
 R0=0.12341512312451
-randArr = getNewArr(R0)
-awg = (sum(randArr))/len(randArr)
-
-print(awg)
-drawHist(randArr)
+randArr = get_new_arr(R0)
+draw_hist(randArr)
 
 
+# digDem(randArr)
