@@ -6,6 +6,7 @@ maxLen = 10000
 K = 10.0
 arr_for_xi = []
 
+
 def frac(num):
     return math.modf(num)[0]
 
@@ -82,6 +83,8 @@ def xi_quad(arr):
 R0 = 0.123415123
 randArr = get_new_arr(R0)
 
+print count_m(randArr)
+print count_disp(randArr)
 xi_quad(draw_hist(randArr))
-
-# digDem(randArr)
+draw_hist(randArr)
+dig_dem(randArr)
